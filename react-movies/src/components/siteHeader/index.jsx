@@ -12,6 +12,7 @@ import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
@@ -27,7 +28,10 @@ const SiteHeader = () => {
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming", path: "/movies/upcoming" },
-    { label: "Option 4", path: "/" },
+    { label: "Top Rated", path: "/movies/top-rated" },
+    { label: "Trending This Week", path: "/movies/trending/week" },
+    { label: "Popular!", path: "/movies/popular" },
+    { label: "Playlist", path: "/movies/playlist" },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -41,13 +45,21 @@ const SiteHeader = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" style={{ backgroundColor: '#E8A0BF' }} >
         <Toolbar>
-          <Typography variant="h4" sx={{ flexGrow: 1 }}>
-            TMDB Client
+          <Typography variant="h4" sx={{ flexGrow: 1, 
+            fontFamily: "'Poppins'",
+            fontWeight: 'bold'
+
+          }}>
+              🎬 TMDB Client          
           </Typography>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            All you ever wanted to know about Movies!
+          <Typography variant="h6" sx={{ flexGrow: 1,
+            fontStyle: 'italic',
+             fontFamily: "'Poppins'",
+             
+           }}>
+            All you ever wanted to know about Movies! 
           </Typography>
             {isMobile ? (
               <>
@@ -92,6 +104,9 @@ const SiteHeader = () => {
                     key={opt.label}
                     color="inherit"
                     onClick={() => handleMenuSelect(opt.path)}
+                    sx={{fontWeight:'bold',
+                    fontFamily: "'Poppins'",
+                    }}
                   >
                     {opt.label}
                   </Button>

@@ -36,9 +36,9 @@ export const getMovie = (args) => {
 
   export const getGenres = () => {
     return fetch(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
+        "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
         import.meta.env.VITE_TMDB_KEY +
-        "&language=en-US"
+        "&language=en-US"  
     ).then( (response) => {
       if (!response.ok) {
         return response.json().then((error) => {
@@ -106,4 +106,108 @@ export const getUpcomingMovies = () => {
     });
 };
 
+export const getTopRated = () => {
+  return fetch(
+    `http://localhost:8080/api/movies/top-rated`
+  )
+  .then((response) => {
+    if (!response.ok) {
+      return response.json().then((error) => {
+        throw new Error(error.status_message || "Something went wrong");
+      });
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error;
+  });
+};
+export const getTrendingMoviesWeek = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/trending/movie/week?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
+export const getPopularMovies = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
 
+
+export const getMovieRecommendations = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id, page = 1 } = idPart;
+
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const getLanguages = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/configuration/languages?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => { throw error; });
+};
+
+export const getMovieCredits = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { id } = idPart;
+
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
+``
