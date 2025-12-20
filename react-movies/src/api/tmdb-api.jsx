@@ -36,9 +36,7 @@ export const getMovie = (args) => {
 
   export const getGenres = () => {
     return fetch(
-        "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
-        import.meta.env.VITE_TMDB_KEY +
-        "&language=en-US"  
+`http://localhost:8080/api/movies/genres`
     ).then( (response) => {
       if (!response.ok) {
         return response.json().then((error) => {
@@ -124,7 +122,7 @@ export const getTopRated = () => {
 };
 export const getTrendingMoviesWeek = () => {
   return fetch(
-    `https://api.themoviedb.org/3/trending/movie/week?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `http://localhost:8080/api/movies/trendingweek`
   )
     .then((response) => {
       if (!response.ok) {
@@ -140,7 +138,7 @@ export const getTrendingMoviesWeek = () => {
 };
 export const getPopularMovies = () => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `http://localhost:8080/api/movies/popular`
   )
     .then((response) => {
       if (!response.ok) {
