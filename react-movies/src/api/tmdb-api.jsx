@@ -176,7 +176,7 @@ export const getMovieRecommendations = ({ queryKey }) => {
 
 export const getLanguages = () => {
   return fetch(
-    `https://api.themoviedb.org/3/configuration/languages?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `http://localhost:8080/api/movies/languages`
   )
     .then((response) => {
       if (!response.ok) {
