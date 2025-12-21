@@ -30,7 +30,7 @@ app.use(express.json());
 app.get('/', (_req, res) => {
   res.status(200).send('Movies API working');
 });
-app.use('/api/movies', moviesRouter); 
+app.use('/api/movies', authenticate, moviesRouter); 
 
 //Users router
 app.use('/api/users', usersRouter);
