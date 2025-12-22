@@ -7,12 +7,11 @@ import cors from 'cors';
 import usersRouter from './api/users';
 import authenticate from './authenticate';
 import moviesRouter from './api/movies';   
+import actorsRouter from './api/actors/';
 
 
 dotenv.config();
 const errHandler = (err, req, res, next ) => {
-  /* if the error in development then send stack trace to display whole error,
-  if it's in production then just send error message  */
   if(process.env.NODE_ENV === 'production') {
     return res.status(500).send(`Something went wrong!`);
   }
@@ -20,7 +19,6 @@ const errHandler = (err, req, res, next ) => {
 };
 
 const app = express();
-// Enable CORS for all requests
 app.use(cors());
 
 const port = process.env.PORT;
@@ -35,6 +33,7 @@ app.use('/api/movies', authenticate, moviesRouter);
 //Users router
 app.use('/api/users', usersRouter);
 
+app.use('/api/actors', actorsRouter);
 app.use(errHandler);
 
 app.listen(port, () => {
