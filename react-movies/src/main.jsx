@@ -39,31 +39,27 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-          <AuthContextProvider>
-
-
+        <AuthContextProvider>
         <MoviesContextProvider>
-                  <SiteHeader />
-
+          <SiteHeader />
           <Routes>
-<Route path="/" element={< StartPage />} />
+              <Route path="/" element={< StartPage />} />
               <Route path="/login" element={< LoginPage />} />
               <Route path="/signup" element={< SignupPage />} />
               <Route path="/profile" element={< ProfilePage />} />
             <Route element={<ProtectedRoutes />}>
-
-            <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
-            <Route path="/reviews/:id" element={<MovieReviewPage />} />
-            <Route path="/reviews/form" element={<AddMovieReviewPage />} />
-            <Route path="/movies/:id" element={<MoviePage />} />
-            <Route path="/movies/top-rated" element={<TopRated />} />
-            <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
-            <Route path="/movies/trending/week" element={<TrendingMoviesPage />} />
-            <Route path="/movies/popular" element={<PopularMoviesPage />} />
-            <Route path="/movie/:id/recommendations" element={<RecommendationsPage />} />
-            <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
-            <Route path="/movies/playlist" element={<PlaylistPage />} />
-            <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+              <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+              <Route path="/reviews/:id" element={<MovieReviewPage />} />
+              <Route path="/reviews/form" element={<AddMovieReviewPage />} />
+              <Route path="/movies/:id" element={<MoviePage />} />
+              <Route path="/movies/top-rated" element={<TopRated />} />
+              <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
+              <Route path="/movies/trending/week" element={<TrendingMoviesPage />} />
+              <Route path="/movies/popular" element={<PopularMoviesPage />} />
+              <Route path="/movie/:id/recommendations" element={<RecommendationsPage />} />
+              <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
+              <Route path="/movies/playlist" element={<PlaylistPage />} />
+              <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
             </Route>
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
@@ -71,8 +67,8 @@ const App = () => {
         </MoviesContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>
   );
 };
 

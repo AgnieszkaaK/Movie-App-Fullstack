@@ -61,7 +61,7 @@ const AppHeader = () => {
     <>
       <AppBar position="fixed" sx={{ backgroundColor: "#E8A0BF" }}>
         <Toolbar>
-=          <Typography
+          <Typography
             variant="h5"
             component={RouterLink}
             to="/"
@@ -110,7 +110,6 @@ const AppHeader = () => {
                   </MenuItem>
                 ))}
 
-                {/* Auth action for mobile: only show Sign out when authenticated; no Login here */}
                 {isAuthenticated ? (
                   <MenuItem
                     onClick={() => {
@@ -137,7 +136,6 @@ const AppHeader = () => {
                 </Button>
               ))}
 
-              {/* Right-side auth status (keep text only when not logged in) */}
               {isAuthenticated ? (
                 <Box sx={{ ml: 2, display: "flex", alignItems: "center", gap: 1 }}>
                   <Typography variant="body2">Welcome {userName}!</Typography>
@@ -148,7 +146,6 @@ const AppHeader = () => {
               ) : (
                 <Box sx={{ ml: 2, display: "flex", alignItems: "center", gap: 1 }}>
                   <Typography variant="body2">You are not logged in</Typography>
-                  {/* No Login button here */}
                 </Box>
               )}
             </>

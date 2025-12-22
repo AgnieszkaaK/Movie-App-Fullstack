@@ -6,12 +6,10 @@ import jwt from 'jsonwebtoken';
 const router = express.Router(); // eslint-disable-line
 const passwordValid = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
-// Get all users
 router.get('/', async (req, res) => {
     const users = await User.find();
     res.status(200).json(users);
 });
-// register(Create)/Authenticate User
 router.post('/', asyncHandler(async (req, res) => {
     try {
         if (!req.body.username || !req.body.password) {
@@ -31,16 +29,12 @@ if (req.query.action === 'register') {
       await authenticateUser(req, res);
     }
   } catch (error) {
-    // Log the error and return a generic error message
     console.error(error);
     res.status(500).json({ success: false, msg: 'Internal server error.' });
   }
 }));
 
-// ... Code as before
-
 async function registerUser(req, res) {
-    // Add input validation logic here
     await User.create(req.body);
     res.status(201).json({ success: true, msg: 'User successfully created.' });
 }
