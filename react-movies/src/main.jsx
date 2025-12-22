@@ -17,11 +17,11 @@ import PopularMoviesPage from "./pages/popularMoviesPage";
 import RecommendationsPage from "./pages/recommendationsPage";
 import PlaylistPage from "./pages/playlist"
 import MovieCreditsPage from "./pages/movieCredits";
-import StartPage from "./pages/startPage";
+
+import AuthContextProvider from "./contexts/authContext";
 import LoginPage from "./pages/loginPage";
-import ProfilePage from "./pages/profilePage";
-import SignUpPage from "./pages/signupPage";
-import MoviesPage from "./pages/moviesPage";
+import SignupPage from "./pages/signupPage";
+import ProtectedRoutes from "./protectedRoutes";
 
 
 const queryClient = new QueryClient({
@@ -39,6 +39,9 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <SiteHeader />
+          <AuthContextProvider>
+
+
         <MoviesContextProvider>
           <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
@@ -50,17 +53,18 @@ const App = () => {
             <Route path="/movies/trending/week" element={<TrendingMoviesPage />} />
             <Route path="/movies/popular" element={<PopularMoviesPage />} />
             <Route path="/movie/:id/recommendations" element={<RecommendationsPage />} />
-            <Route path="/movies/playlist" element={<PlaylistPage />} />
             <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
-            <Route path="/login" element={< LoginPage />} />
-            <Route path="/signup" element={< SignUpPage />} />
-            <Route path="/discover" element={< HomePage />} />
-            <Route path="/profile" element={< ProfilePage />} />
-
-            <Route path="/" element={<StartPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route element={<ProtectedRoutes />}>
+            <Route path="/movies/playlist" element={<PlaylistPage />} />
+            <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+            </Route>
+            <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </MoviesContextProvider>
+        </AuthContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
